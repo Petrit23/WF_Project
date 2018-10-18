@@ -52,4 +52,6 @@ process.on('SIGINT', () => {
     });
 });
 
+require('./users');
+
 
