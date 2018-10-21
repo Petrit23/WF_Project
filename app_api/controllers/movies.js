@@ -1,13 +1,13 @@
 const mongoose = require('mongoose');
-const Users = mongoose.model('User');
+const Movies = mongoose.model('Movie');
 
-const UsersCreate = function (req, res) {
-    Users.create({
-        name: req.body.name,
+const MoviesCreate = function (req, res) {
+    Movies.create({
+        title: req.body.title,
         email: req.body.email,
-        username: req.body.username,
-        password: req.body.password,
-    }, (err, user) => {
+        description: req.body.description,
+        imageURL: req.body.imageURL,
+    }, (err, movie) => {
         if (err) {
             res
                 .status(400)
@@ -15,21 +15,21 @@ const UsersCreate = function (req, res) {
         } else {
             res
                 .status(201)
-                .json(user);
+                .json(movie);
         }
     });
 };
 
-const UsersReadOne = function (req, res) {
-    if (req.params && req.params.userid) {
-        Users
-            .findById(req.params.userid)
-            .exec((err, user) => {
-                if (!user) {
+const MoviesReadOne = function (req, res) {
+    if (req.params && req.params.movieid) {
+        Movies
+            .findById(req.params.movieid)
+            .exec((err, movie) => {
+                if (!movie) {
                     res
                         .status(404)
                         .json({
-                            "message": "Userid not found"
+                            "message": "Movieid not found"
                         });
                     return;
                 } else if (err) {
@@ -40,29 +40,23 @@ const UsersReadOne = function (req, res) {
                 }
                 res
                     .status(200)
-                    .json(user);
+                    .json(movie);
             });
     } else {
         res
             .status(404)
             .json({
-                "message": "No Userid in request"
+                "message": "No Movieid in request"
             });
     }
 };
 
-const UsersUpdateOne = function (req, res) {
-    res
-        .status(200)
-        .json({"status": "success"});
-};
-
-const UsersDeleteOne = function (req, res) {
-    const userid = req.params.userid;
-    if (userid) {
-        Users
-            .findByIdAndRemove(userid)
-            .exec((err, user) => {
+const MoviesDeleteOne = function (req, res) {
+    const movieid = req.params.movieid;
+    if (movieid) {
+        Movies
+            .findByIdAndRemove(movieid)
+            .exec((err, movie) => {
                     if (err) {
                         res
                             .status(404)
@@ -78,15 +72,14 @@ const UsersDeleteOne = function (req, res) {
         res
             .status(404)
             .json({
-                "message": "No userid"
+                "message": "No movieid"
             });
     }
 };
 
 
 module.exports = {
-    UsersCreate,
-    UsersReadOne,
-    UsersUpdateOne,
-    UsersDeleteOne
+    MoviesCreate,
+    MoviesReadOne,
+    MoviesDeleteOne,
 };
