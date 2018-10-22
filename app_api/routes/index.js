@@ -38,7 +38,7 @@ router
 router
     .route('/movies/:movieid')
     .get(ctrlMovies.MoviesReadOne)
-    //.put(ctrlMovies.MoviesUpdateOne)
+    .put(ctrlMovies.MoviesUpdateOne)
     .delete(ctrlMovies.MoviesDeleteOne);
 
 

@@ -51,6 +51,49 @@ const MoviesReadOne = function (req, res) {
     }
 };
 
+const MoviesUpdateOne = function (req, res) {
+    if (!req.params.movieid) {
+        res
+            .status(404)
+            .json({
+                "message": "Not found, movieid is required"
+            });
+        return;
+    }
+    Movies
+        .findById(req.params.movieid)
+        .exec((err, movie) => {
+                if (!movie) {
+                    res
+                        .json(404)
+                        .status({
+                            "message": "movieid not found"
+                        });
+                    return;
+                } else if (err) {
+                    res
+                        .status(400)
+                        .json(err);
+                    return;
+                }
+                movie.title = req.body.title;
+                movie.description = req.body.description;
+                movie.imageURL = req.body.imageURL;
+                movie.save((err, movie) => {
+                    if (err) {
+                        res
+                            .status(404)
+                            .json(err);
+                    } else {
+                        res
+                            .status(200)
+                            .json(movie);
+                    }
+                });
+            }
+        );
+};
+
 const MoviesDeleteOne = function (req, res) {
     const movieid = req.params.movieid;
     if (movieid) {
@@ -81,5 +124,6 @@ const MoviesDeleteOne = function (req, res) {
 module.exports = {
     MoviesCreate,
     MoviesReadOne,
+    MoviesUpdateOne,
     MoviesDeleteOne,
 };
