@@ -52,10 +52,54 @@ const UsersReadOne = function (req, res) {
 };
 
 const UsersUpdateOne = function (req, res) {
-    res
-        .status(200)
-        .json({"status": "success"});
+    if (!req.params.userid) {
+        res
+            .status(404)
+            .json({
+                "message": "Not found, userid is required"
+            });
+        return;
+    }
+    Users
+        .findById(req.params.userid)
+        .exec((err, user) => {
+                if (!user) {
+                    res
+                        .json(404)
+                        .status({
+                            "message": "userid not found"
+                        });
+                    return;
+                } else if (err) {
+                    res
+                        .status(400)
+                        .json(err);
+                    return;
+                }
+                user.name = req.body.name;
+                user.email = req.body.email;
+                user.username = req.body.username;
+                user.password = req.body.password;
+                user.save((err, user) => {
+                    if (err) {
+                        res
+                            .status(404)
+                            .json(err);
+                    } else {
+                        res
+                            .status(200)
+                            .json(user);
+                    }
+                });
+            }
+        );
 };
+
+// const UsersUpdateOne = function (req, res) {
+//     res
+//         .status(200)
+//         .json({"status": "success"});
+// };
 
 const UsersDeleteOne = function (req, res) {
     const userid = req.params.userid;

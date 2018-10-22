@@ -16,12 +16,19 @@ const userSchema = new mongoose.Schema({
         type: String,
         lowercase: true,
         required: true,
-        match: /^[a-zA-Z0-9]+$/,
+        //match: /^[a-zA-Z0-9]+$/,
     },
     password: {
         type: String,
         required: true,
-    }
+    },
+    //saves: [savedMoviesSchema],
+});
+
+const savedMoviesSchema = new mongoose.Schema({
+    title: String,
+    description: String,
+    imageURL: String,
 });
 
 mongoose.model('User', userSchema);
