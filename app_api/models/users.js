@@ -1,5 +1,17 @@
 const mongoose = require('mongoose');
 
+const savedMoviesSchema = new mongoose.Schema({
+    title: {
+        type: String,
+    },
+    description: {
+        type: String
+    },
+    imageURL: {
+        type: String
+    }
+});
+
 const userSchema = new mongoose.Schema({
     name: {
         type: String,
@@ -22,13 +34,7 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    //saves: [savedMoviesSchema],
-});
-
-const savedMoviesSchema = new mongoose.Schema({
-    title: String,
-    description: String,
-    imageURL: String,
+    savedMovies: [savedMoviesSchema]
 });
 
 mongoose.model('User', userSchema);

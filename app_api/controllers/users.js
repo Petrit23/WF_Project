@@ -95,12 +95,6 @@ const UsersUpdateOne = function (req, res) {
         );
 };
 
-// const UsersUpdateOne = function (req, res) {
-//     res
-//         .status(200)
-//         .json({"status": "success"});
-// };
-
 const UsersDeleteOne = function (req, res) {
     const userid = req.params.userid;
     if (userid) {
