@@ -54,5 +54,6 @@ process.on('SIGINT', () => {
 
 require('./users');
 require('./movies');
+require('./about');
 
 
