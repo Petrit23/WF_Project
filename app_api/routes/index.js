@@ -6,7 +6,6 @@ const ctrSavedMovies = require('../controllers/savedMovies');
 const ctrlAbout = require('../controllers/about');
 
 
-
 // users
 router
     .route('/users')
@@ -53,9 +52,6 @@ router
     .get(ctrlAbout.AboutReadOne)
     .put(ctrlAbout.AboutUpdateOne)
     .delete(ctrlAbout.AboutDeleteOne);
-
-
-
 
 
 module.exports = router;
