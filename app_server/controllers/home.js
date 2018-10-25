@@ -1,6 +1,6 @@
 /* GET 'home' page */
 const home = function (req, res) {
-    res.render('index', {title: 'Home'});
+    res.render('home', {title: 'Home'});
 };
 
 module.exports = {
