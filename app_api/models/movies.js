@@ -7,7 +7,7 @@ const movieSchema = new mongoose.Schema({
 
     title: String,
     description: String,
-    imageURL: String,
+    videoURL: String,
 
 });
 

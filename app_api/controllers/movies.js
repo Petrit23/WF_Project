@@ -6,7 +6,7 @@ const MoviesCreate = function (req, res) {
         title: req.body.title,
         email: req.body.email,
         description: req.body.description,
-        imageURL: req.body.imageURL,
+        videoURL: req.body.videoURL,
     }, (err, movie) => {
         if (err) {
             res
@@ -78,7 +78,7 @@ const MoviesUpdateOne = function (req, res) {
                 }
                 movie.title = req.body.title;
                 movie.description = req.body.description;
-                movie.imageURL = req.body.imageURL;
+                movie.videoURL = req.body.videoURL;
                 movie.save((err, movie) => {
                     if (err) {
                         res

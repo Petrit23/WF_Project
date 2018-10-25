@@ -7,7 +7,7 @@ const savedMoviesSchema = new mongoose.Schema({
     description: {
         type: String
     },
-    imageURL: {
+    videoURL: {
         type: String
     }
 });

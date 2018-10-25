@@ -12,7 +12,7 @@ const _doAddSavedMovie = function(req, res, user) {
         user.savedMovies.push({
             title: req.body.title,
             description: req.body.description,
-            imageURL: req.body.imageURL
+            videoURL: req.body.videoURL
         });
         user.save((err, user) => {
             if (err) {
@@ -144,7 +144,7 @@ const savedMoviesUpdateOne = function (req, res) {
                     } else {
                         thisSavedMovie.title = req.body.title;
                         thisSavedMovie.description = req.body.description;
-                        thisSavedMovie.imageURL = req.body.imageURL;
+                        thisSavedMovie.videoURL = req.body.videoURL;
                         user.save((err, user) => {
                             if (err) {
                                 res
